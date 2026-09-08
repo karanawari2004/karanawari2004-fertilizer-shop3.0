@@ -1,0 +1,64 @@
+<%-include('partials/head')%>
+<%-include('partials/nav')%>
+
+<body>
+
+<main class="form-page">
+  <section class="form-card">
+    <% if (typeof error !== 'undefined') { %>
+      <div class="error-message">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <form class="product-form" method="POST" action="/<%= editing ? 'edit' : 'add-product' %>">
+      <% if (editing) { %>
+        <input type="hidden" name="id" value="<%= fertilizer.id %>">
+      <% } %>
+
+      <div class="form-group">
+        <input class="text-input" name="name" placeholder="Product Name" value="<%= editing ? fertilizer.name : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <input class="text-input" name="type" placeholder="Product Type" value="<%= editing ? fertilizer.type : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <input class="text-input" type="text" name="advantages" placeholder="Advantages of this fertilizer" value="<%= editing ? fertilizer.advantages : '' %>">
+      </div>
+
+      <div class="form-group">
+        <input class="text-input" type="text" name="contents" placeholder="Contents of fertilizer" value="<%= editing ? fertilizer.contents : '' %>">
+      </div>
+
+      <div class="form-group">
+        <input class="text-input" type="text" name="photo" placeholder="Photo URL (optional)" value="<%= editing ? fertilizer.photo : '' %>">
+      </div>
+
+      <div class="form-group">
+        <input class="text-input" type="number" name="price" placeholder="Price of fertilizer" value="<%= editing ? fertilizer.price : '' %>" required>
+      </div>
+
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="product" value="seed" <%= fertilizer.product === 'seed' ? 'checked' : '' %> required> Seed</label>
+        <label class="radio-option"><input type="radio" name="product" value="fertilizer" <%= fertilizer.product === 'fertilizer' ? 'checked' : '' %>> Fertilizer</label>
+        <label class="radio-option"><input type="radio" name="product" value="nap" <%= fertilizer.product === 'nap' ? 'checked' : '' %>> NAP</label>
+        <label class="radio-option"><input type="radio" name="product" value="dap" <%= fertilizer.product === 'dap' ? 'checked' : '' %>> DAP</label>
+        <label class="radio-option"><input type="radio" name="product" value="pesticide" <%= fertilizer.product === 'pesticide' ? 'checked' : '' %>> Pesticide</label>
+        <label class="radio-option"><input type="radio" name="product" value="plantgrowth" <%= fertilizer.product === 'plantgrowth' ? 'checked' : '' %>> Plant Growth Product</label>
+        <label class="radio-option"><input type="radio" name="product" value="tool" <%= fertilizer.product === 'tool' ? 'checked' : '' %>> Farming Tool</label>
+      </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" name="agreement" value="agree" required>
+        I agree with the terms and conditions
+      </label>
+
+      <button type="submit" class="submit-button"><%= editing ? 'Update Product' : 'Add Product' %></button>
+    </form>
+  </section>
+</main>
+
+</body>
+</html>

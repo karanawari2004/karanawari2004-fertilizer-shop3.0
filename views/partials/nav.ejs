@@ -1,0 +1,47 @@
+<div class="nav-container">
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <nav class="main-nav">
+    <a href="/" style="color:#00ff99; text-decoration:none; font-weight:bold;">🌱 Home</a>
+    <% if (isLoggedIn) { %>
+      <a href="/all-products" style="color:#00ff99; text-decoration:none; font-weight:bold;">📦 All Products</a>
+      <a href="/seeds" style="color:#00ff99; text-decoration:none; font-weight:bold;">🌾 Seeds</a>
+      <a href="/fertilizer" style="color:#00ff99; text-decoration:none; font-weight:bold;">🧪 Fertilizer</a>
+      <a href="/nap" style="color:#00ff99; text-decoration:none; font-weight:bold;">🌿 NAP</a>
+      <a href="/dap" style="color:#00ff99; text-decoration:none; font-weight:bold;">🌱 DAP</a>
+      <a href="/pesticide" style="color:#00ff99; text-decoration:none; font-weight:bold;">☠️ Pesticide</a>
+      <a href="/plantgrowth" style="color:#00ff99; text-decoration:none; font-weight:bold;">🌻 Plant Growth</a>
+      <a href="/tool" style="color:#00ff99; text-decoration:none; font-weight:bold;">🚜 Farming Tools</a>
+      <a href="/bill" style="color:#00ff99; text-decoration:none; font-weight:bold;">🧾 Billing (<%= typeof cartCount !== 'undefined' ? cartCount : 0 %>)</a>
+      <% if (isAdmin) { %>
+        <a href="/add-product" style="color:#ffcc00; text-decoration:none; font-weight:bold;">⚙️ Admin</a>
+      <% } %>
+      <a href="/logout" style="color:#ffcc00; text-decoration:none; font-weight:bold;">🔒 Logout</a>
+    <% } else { %>
+      <a href="/farmer" style="color:#00ff99; text-decoration:none; font-weight:bold;">👨‍🌾 Sign in</a>
+    <% } %>
+  </nav>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <button class="close-btn" onclick="toggleSidebar()">✕</button>
+  <nav class="sidebar-nav">
+    <a href="/" onclick="toggleSidebar()">🌱 Home</a>
+    <% if (isLoggedIn) { %>
+      <a href="/all-products" onclick="toggleSidebar()">📦 All Products</a>
+      <a href="/seeds" onclick="toggleSidebar()">🌾 Seeds</a>
+      <a href="/fertilizer" onclick="toggleSidebar()">🧪 Fertilizer</a>
+      <a href="/nap" onclick="toggleSidebar()">🌿 NAP</a>
+      <a href="/dap" onclick="toggleSidebar()">🌱 DAP</a>
+      <a href="/pesticide" onclick="toggleSidebar()">☠️ Pesticide</a>
+      <a href="/plantgrowth" onclick="toggleSidebar()">🌻 Plant Growth</a>
+      <a href="/tool" onclick="toggleSidebar()">🚜 Farming Tools</a>
+      <a href="/bill" onclick="toggleSidebar()">🧾 Billing (<%= typeof cartCount !== 'undefined' ? cartCount : 0 %>)</a>
+      <% if (isAdmin) { %>
+        <a href="/add-product" onclick="toggleSidebar()">⚙️ Admin</a>
+      <% } %>
+      <a href="/logout" onclick="toggleSidebar()">🔒 Logout</a>
+    <% } else { %>
+      <a href="/farmer" onclick="toggleSidebar()">👨‍🌾 Sign in</a>
+    <% } %>
+  </nav>
+</div>

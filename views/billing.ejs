@@ -1,0 +1,44 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<body>
+  <main class="page-header">
+    <h1>Billing Summary</h1>
+    <p>Review your selected items and the total bill. Your cart is stored in session cookies while you shop.</p>
+
+    <% if (cart && cart.length > 0) { %>
+      <div class="products-wrapper">
+        <% cart.forEach(item => { %>
+          <div class="product-card">
+            <div class="product-info">
+              <h3><%= item.name %></h3>
+              <p><strong>Unit Price:</strong> ₹<%= item.price %></p>
+              <p><strong>Quantity:</strong> <%= item.quantity %></p>
+              <p><strong>Subtotal:</strong> ₹<%= item.price * item.quantity %></p>
+            </div>
+            <div class="price-row" style="padding: 18px; gap: 8px;">
+              <form method="POST" action="/cart/decrease/<%= item.id %>">
+                <button type="submit" class="add-btn buy-btn" style="padding: 10px 14px;">-</button>
+              </form>
+              <form method="POST" action="/cart/increase/<%= item.id %>">
+                <button type="submit" class="add-btn buy-btn" style="padding: 10px 14px;">+</button>
+              </form>
+              <form method="POST" action="/cart/remove/<%= item.id %>">
+                <button type="submit" class="add-btn delete-btn" style="padding: 10px 14px;">Remove</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div style="max-width: 640px; margin: 0 auto; padding: 20px; background: white; border-radius: 22px; border: 1px solid #d6e7d0; box-shadow: 0 12px 24px rgba(86, 124, 85, 0.12);">
+        <h2 style="margin: 0 0 18px; color: #2d5f3b;">Total Bill</h2>
+        <p style="font-size: 1.35rem; font-weight: 700; color: #2f673d;">₹<%= total %></p>
+        <p style="margin-top: 12px; color: #4f6151;">Your cart total is computed using reduce over cart items.</p>
+      </div>
+    <% } else { %>
+      <p class="empty-text">Your cart is empty. Add a product to see the bill.</p>
+    <% } %>
+  </main>
+</body>
+</html>

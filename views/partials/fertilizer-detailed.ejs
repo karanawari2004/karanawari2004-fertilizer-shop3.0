@@ -1,0 +1,69 @@
+<%- include('../partials/head') %>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <%- include('../partials/nav.ejs') %>
+
+  <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-6xl">
+    
+    <h2 class="text-3xl text-green-600 font-bold text-center mb-6">
+      Details of <%= fertilizer.name %>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Image Section -->
+      <div class="rounded-lg overflow-hidden border">
+        <img 
+          src="<%= fertilizer.photo %>" 
+          alt="<%= fertilizer.name %>" 
+          class="w-full h-96 object-cover"
+        >
+      </div>
+
+      <!-- Details Section -->
+      <div class="space-y-6">
+
+        <div class="border-b pb-4">
+          <h3 class="text-xl font-semibold mb-1">Type</h3>
+          <p class="text-gray-700">
+            <%= fertilizer.type %>
+          </p>
+        </div>
+
+        <div class="border-b pb-4">
+          <h3 class="text-xl font-semibold mb-1">Advantages</h3>
+          <p class="text-gray-700">
+            <%= fertilizer.advantages %>
+          </p>
+        </div>
+
+        <div class="border-b pb-4">
+          <h3 class="text-xl font-semibold mb-1">Contents</h3>
+          <p class="text-gray-700">
+            <%= fertilizer.contents %>
+          </p>
+        </div>
+
+        <div class="border-b pb-4">
+          <h3 class="text-xl font-semibold mb-1">Category</h3>
+          <p class="text-gray-700 capitalize">
+            <%= fertilizer.product %>
+          </p>
+        </div>
+
+        <div class="border-b pb-4">
+          <h3 class="text-xl font-semibold mb-1">Price</h3>
+          <p class="text-green-600 text-2xl font-bold">
+            ₹ <%= fertilizer.price %>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

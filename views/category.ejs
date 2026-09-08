@@ -1,0 +1,134 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<style>
+  .products-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    padding: 18px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+  }
+  .product-card {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform 0.25s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+  }
+  .product-image img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+  }
+  .product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background:#1b5e20;
+    color:white;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .product-info {
+    padding:18px;
+    color:#1b5e20;
+  }
+  .product-info h3 {
+    margin:0 0 12px;
+  @media (max-width: 1100px) {
+    .products-wrapper {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 768px) {
+    .products-wrapper {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 480px) {
+    .products-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+    font-size:1.4rem;
+  }
+  .product-info p {
+    margin:8px 0;
+    color:#444;
+    font-size:0.95rem;
+    line-height:1.5;
+  }
+  .price-row {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:16px;
+  }
+  .price {
+    font-size:1.25rem;
+    font-weight:700;
+    color:#2e7d32;
+  }
+  .add-btn {
+    background:#2e7d32;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+  }
+  .empty-text {
+    color:white;
+    text-align:center;
+    font-size:1.2rem;
+    margin-top:40px;
+  }
+</style>
+
+<body>
+
+<main class="page-header">
+  <h1><%= heading %></h1>
+  <p style="font-size:16px; color:#e0e0e0; max-width:760px;">
+    Browse the available products for this category below. Use the navigation to switch between sections.
+  </p>
+</main>
+
+<% if (products && products.length > 0) { %>
+  <section class="products-wrapper">
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="<%= product.photo || 'https://via.placeholder.com/300x200?text=No+Image' %>" alt="<%= product.name %>">
+          <div class="product-badge"><%= product.type %></div>
+        </div>
+        <div class="product-info">
+          <h3><%= product.name %></h3>
+          <p><b>Category:</b> <%= product.product %></p>
+          <p><b>Advantages:</b> <%= product.advantages %></p>
+          <p><b>Contents:</b> <%= product.contents %></p>
+          <div class="price-row">
+            <span class="price">₹<%= product.price %></span>
+            <a href="/edit/<%= product.id %>?editing=true" class="add-btn">Edit</a>
+            <form method="POST" action="/delete/<%= product.id %>" style="display:inline;">
+              <button type="submit" class="add-btn" style="background-color: #ff0015; color: white; padding: 10px 18px; text-decoration: none; border-radius: 6px; font-weight: 600; display: inline-block; border: none; cursor: pointer;">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </section>
+<% } else { %>
+  <p class="empty-text">No products available in this category.</p>
+<% } %>
+
+</body>
+</html>

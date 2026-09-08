@@ -1,0 +1,40 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<body>
+
+<main class="page-header">
+  <h1>🌻 Plant Growth Products</h1>
+  <p>Browse all available plant growth products below. Enhance crop yield with our plant growth solutions.</p>
+</main>
+
+<% if (products && products.length > 0) { %>
+  <section class="products-wrapper">
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="<%= product.photo || 'https://via.placeholder.com/300x200?text=No+Image' %>" alt="<%= product.name %>">
+          <div class="product-badge"><%= product.type %></div>
+        </div>
+        <div class="product-info">
+          <h3><%= product.name %></h3>
+          <p><b>Category:</b> <%= product.product %></p>
+          <p><b>Advantages:</b> <%= product.advantages %></p>
+          <p><b>Contents:</b> <%= product.contents %></p>
+          <div class="price-row">
+            <span class="price">₹<%= product.price %></span>
+            <a href="/edit/<%= product.id %>?editing=true" class="add-btn">Edit</a>
+            <form method="POST" action="/delete/<%= product.id %>" style="display:inline;">
+              <button type="submit" class="add-btn" style="background-color: #ff0015;">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </section>
+<% } else { %>
+  <p class="empty-text">No plant growth products available yet.</p>
+<% } %>
+
+</body>
+</html>

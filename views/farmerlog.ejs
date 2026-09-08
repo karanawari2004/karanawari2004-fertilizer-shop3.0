@@ -1,0 +1,31 @@
+<%- include('partials/head') %>
+<%- include('partials/nav') %>
+
+<body>
+
+<main class="auth-page">
+  <section class="auth-card">
+    <h1>Login or Sign up</h1>
+    <p>Use your account to access the farm shop. Admin login: username <strong>admin</strong>, password <strong>admin</strong>.</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="error-message"><%= error %></div>
+    <% } %>
+
+    <form class="auth-form" method="POST" action="/farmer">
+      <input class="auth-input" name="username" placeholder="Username" required>
+      <input class="auth-input" type="password" name="password" placeholder="Password" required>
+      <input class="auth-input" name="location" placeholder="Location (optional)">
+      <button class="auth-button" type="submit" name="action" value="login">Login</button>
+      <button class="auth-button" type="submit" name="action" value="signup">Sign up</button>
+    </form>
+
+    <div class="auth-footer">
+      <p>New users can create an account with the Sign up button.</p>
+      <p><a href="/">Back to home</a></p>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
